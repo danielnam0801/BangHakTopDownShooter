@@ -1,0 +1,61 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!78 &1
+TagManager:
+  serializedVersion: 2
+  tags: []
+  layers:
+  - Default
+  - TransparentFX
+  - Ignore Raycast
+  - 
+  - Water
+  - UI
+  - Player
+  - Enemy
+  - Obstacle
+  - EnemyMovementCollider
+  - PlayerMovementCollider
+  - Bullet
+  - Resource
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  m_SortingLayers:
+  - name: Default
+    uniqueID: 0
+    locked: 0
+  - name: Floor
+    uniqueID: 4106374515
+    locked: 0
+  - name: BackGround
+    uniqueID: 802165365
+    locked: 0
+  - name: Agent
+    uniqueID: 2506333495
+    locked: 0
+  - name: ForeGround
+    uniqueID: 3256578513
+    locked: 0
+  - name: Top
+    uniqueID: 1473871741
+    locked: 0
+  - name: ResourceLayer
+    uniqueID: 3811559283
+    locked: 0
