@@ -38,6 +38,10 @@ public class StageScript : MonoBehaviour
         OnClearStage.Invoke();
     }
 
+    public void Update()
+    {
+        
+    }
     //public override void CompletePrevFeedback()
     //{
     //    StopAllCoroutines();
@@ -76,14 +80,13 @@ public class StageScript : MonoBehaviour
     }
 
     public void RoomMove()
-    {
-        xMove += xMove;
+    { 
         StartCoroutine(RMove());
     }
     IEnumerator RMove()
     {
         yield return new WaitForSeconds(1.5f);
-        Vector3 targetXpos = transform.position + new Vector3(xMove,0,0);
+        Vector3 targetXpos = _Room.transform.position + new Vector3(xMove,0,0);
         _Room.transform.DOMove(targetXpos, roomMoveSpeed, true).SetEase(roomMoveEase);
         
     }

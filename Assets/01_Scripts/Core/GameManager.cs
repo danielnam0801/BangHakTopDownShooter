@@ -15,7 +15,7 @@ public class GameManager : MonoBehaviour
     private Texture2D _cursorTexture = null;
 
     [SerializeField]
-    private StageDataSO _stageData;
+    private StageDataAll _stageData;
     public int _currentStage = 0;
     EnemyManager _enemyManager;
     public bool _stageChange;
@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
 
     private void Awake()
     {
+        _currentStage = 0;
         if (instance != null)
         {
             Debug.LogError("Multiple GameManager is running");
@@ -43,7 +44,7 @@ public class GameManager : MonoBehaviour
         CreatePool();
         SetCursorIcon();
         _enemyManager = GameObject.Find("Manager").GetComponent<EnemyManager>();
-        _stageData = Resources.Load<StageDataSO>("StageData");
+        //_stageData = GetComponent<StageDataAll>();
         _stageChange = false;
         StartCoroutine("StartBefore");
     }
@@ -70,7 +71,6 @@ public class GameManager : MonoBehaviour
     }
 
     private float _nextGenerationTime = 0f;
-    private int _spawnCount = 3;
     [SerializeField]
     private float _generateMinTime = 4f, _generateMaxTime = 8f;
 
@@ -78,20 +78,20 @@ public class GameManager : MonoBehaviour
     {
         if (_enemyManager._isSpawning == true && _stageChange)
         {
-            SpawnTime(_stageData.list[_currentStage].spawnSpawnerCnt);
+            SpawnTime(_stageData._list[0].stageData[_currentStage].spawnSpawnerCnt, _stageData._list[0].stageData[_currentStage].spawnEnemyCnt);
             _stageChange = false;
         }
     }
-    public void SpawnTime(int cnt)
+    public void SpawnTime(int _SpawnCnt, int _EnemyCount)
     {
-        StartCoroutine(GameLoop(cnt));
+        StartCoroutine(GameLoop(_SpawnCnt, _EnemyCount));
         _enemyManager._isSpawner = true;
         Debug.Log("currentStage : " + _currentStage);
     }
-    IEnumerator GameLoop(int cnt)
+    IEnumerator GameLoop(int _Spawncnt, int _EnemyCnt)
     {
         int i = 0;
-        for (i = 0; i < cnt; i++)
+        for (i = 0; i < _Spawncnt; i++)
         {
             yield return new WaitForSeconds(_nextGenerationTime);
 
@@ -99,11 +99,11 @@ public class GameManager : MonoBehaviour
             float posY = Random.Range(-5f, 5f);
             Spawner spawner = PoolManager.Instance.Pop("Spawner") as Spawner;
             spawner.transform.position = new Vector3(posX, posY);
-            spawner.StartToSpawn(_spawnCount);
+            spawner.StartToSpawn(_EnemyCnt, _currentStage);
             _nextGenerationTime = Random.Range(_generateMinTime, _generateMaxTime);
         }
         Debug.Log("Á¤»ó");
-        if(i == cnt)
+        if(i == _Spawncnt)
         {
             _enemyManager._isSpawner = false;
             _currentStage++;

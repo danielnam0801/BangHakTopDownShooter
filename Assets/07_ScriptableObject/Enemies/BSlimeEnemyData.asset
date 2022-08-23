@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d11f5dd44ecbf8848bb6953c3f90572c, type: 3}
+  m_Name: BSlimeEnemyData
+  m_EditorClassIdentifier: 
+  name: BSlime
+  prefab: {fileID: 3394556902235756021, guid: 89b2c92edb19b5f4f991344ad1114559, type: 3}
+  maxHealth: 20
+  knockbackRegist: 1
+  damage: 2
+  attackDelay: 1.5
+  attackRange: 0.5
+  chaseRange: 5

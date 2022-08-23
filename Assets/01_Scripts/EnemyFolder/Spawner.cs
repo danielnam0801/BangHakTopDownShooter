@@ -6,8 +6,10 @@ using UnityEngine.Experimental.Rendering.Universal;
 
 public class Spawner : PoolAbleMono
 {
-    [SerializeField]
+    //[SerializeField]
     private List<EnemyDataSO> _spawnEnemies = null;
+    [SerializeField]
+    private StageDataAll _stageData;
 
     private Light2D _spawnLight;
     [SerializeField]
@@ -26,6 +28,7 @@ public class Spawner : PoolAbleMono
         _spawnLight = GetComponent<Light2D>();
         _spawnLight.intensity = 0;
         _manager = GameObject.Find("Manager").GetComponent<EnemyManager>();
+        //_stageData = GetComponent<StageDataAll>();
     }
 
     private void Update()
@@ -36,7 +39,7 @@ public class Spawner : PoolAbleMono
         //}
     }
 
-    public void StartToSpawn(int count)
+    public void StartToSpawn(int count, int currentStage)
     {
         _manager._isSpawnEnemy = true;
         Tween lightTween = DOTween.To(
@@ -47,31 +50,32 @@ public class Spawner : PoolAbleMono
 
         Sequence seq = DOTween.Sequence();
         seq.Append(lightTween);
-        seq.AppendCallback(() => StartCoroutine(SpawnCoroutine(count)));
+        seq.AppendCallback(() => StartCoroutine(SpawnCoroutine(count,currentStage)));
     }
 
-    IEnumerator SpawnCoroutine(int count)
+    IEnumerator SpawnCoroutine(int count, int currentStage)
     {
+        //_spawnEnemies = _stageData.list[_spawnCount].spawnEnemyPrefab;
         int i = 0;
         for (i = 0; i < count; i++)
         {
-            
+            StageData _Stage = _stageData._list[0].stageData[currentStage];
             float delay = Random.Range(_delayMin, _delayMax);
-            int index = Random.Range(0, _spawnEnemies.Count);
+            int index = Random.Range(0, _Stage.spawnEnemyPrefab.Count);
 
             yield return new WaitForSeconds(delay);
-            EnemyDataSO target = _spawnEnemies[index];
+            EnemyDataSO target = _Stage.spawnEnemyPrefab[index];
 
             Vector3 position = (Vector2)transform.position + Random.insideUnitCircle * _radius;
             Enemy enemy = PoolManager.Instance.Pop(target.prefab.name) as Enemy;
             _manager.enemyAliveCnt++;
-            Debug.Log(enemy);
+           // Debug.Log(enemy);
             enemy.transform.SetPositionAndRotation(position, Quaternion.identity);
 
             //Enemy enemy = Instantiate(target.prefab, position, Quaternion.identity).GetComponent<Enemy>();
 
             enemy.Spawn();
-            
+
         }
         DOTween.To(
             () => _spawnLight.intensity,

@@ -85,10 +85,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5e38785aec628948b73c74677ee00e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _spawnEnemies:
-  - {fileID: 11400000, guid: 90abd73800c489f48b210d03e0d54121, type: 2}
-  - {fileID: 11400000, guid: 3c4cec7931cf43a4fbe220ff328b4e1e, type: 2}
-  - {fileID: 11400000, guid: d5aa2341e3bec2d47969a0e1ed3f937d, type: 2}
+  _stageData: {fileID: 11400000, guid: 8a7419eb029048142951f5e5ed36755b, type: 2}
   _targetIntensity: 1.5
   _radius: 3
   _delayMin: 0.5

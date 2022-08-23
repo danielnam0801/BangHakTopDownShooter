@@ -9,12 +9,11 @@ public class StageData
 {
     public int spawnSpawnerCnt;
     public int spawnEnemyCnt;
-    public List<GameObject> spawnSpawnerPrefab;
-    public List<GameObject> spawnEnemyPrefab;
-
+    public List<EnemyDataSO> spawnEnemyPrefab;
 }
+
 [CreateAssetMenu(menuName = "SO/StageData")]
 public class StageDataSO : ScriptableObject
 {
-    public List<StageData> list;
+    public List<StageData> stageData;
 }
