@@ -16,7 +16,7 @@ MonoBehaviour:
   - spawnSpawnerCnt: 3
     spawnEnemyCnt: 3
     spawnEnemyPrefab:
-    - {fileID: 11400000, guid: ea11718c6ac39fe48a7e24fb451afaaf, type: 2}
+    - {fileID: 11400000, guid: 2e7b6adc9bc534444bccffa82f969e0b, type: 2}
   - spawnSpawnerCnt: 3
     spawnEnemyCnt: 3
     spawnEnemyPrefab:

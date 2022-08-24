@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 6b9e67a2933136f488900786bbbd857e, type: 3}
-  m_Name: AmmoPack
+  m_Name: LevelPointPack
   m_EditorClassIdentifier: 
-  rate: 0.3
+  rate: 1
   itemPrefab: {fileID: 6960652058259384513, guid: 049e1a67dcc268e429841d84f0d2854f, type: 3}
   resourceType: 2
-  minAmount: 20
-  maxAmount: 40
-  useSound: {fileID: 8300000, guid: 4626c90d062a1be44aff21e40b5a305e, type: 3}
-  popupTextColor: {r: 1, g: 0.8866347, b: 0, a: 1}
+  minAmount: 5
+  maxAmount: 5
+  useSound: {fileID: 8300000, guid: ac78445881f6f8a449ba933251f56117, type: 3}
+  popupTextColor: {r: 0, g: 0.94815207, b: 1, a: 1}

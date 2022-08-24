@@ -6,11 +6,13 @@ public class ItemCollector : MonoBehaviour
 {
     private int _resourceLayer;
     private Player _player;
+    levelManager _levelManager;
 
     private void Awake()
     {
         _resourceLayer = LayerMask.NameToLayer("Resource");
         _player = GetComponent<Player>();
+        _levelManager = GameObject.Find("Manager").GetComponent<levelManager>();
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -23,7 +25,10 @@ public class ItemCollector : MonoBehaviour
             {
                 switch (resource.ResourceData.resourceType)
                 {
-                    case ResourceType.Ammo:
+                    case ResourceType.LevelPoint:
+                        int value1 = resource.ResourceData.GetAmount();
+                        _levelManager.totalExp += value1;
+                        PopupText(value1, resource);
                         resource.PickUpResource();
                         break;
                     case ResourceType.Health:

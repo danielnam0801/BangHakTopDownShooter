@@ -6,7 +6,7 @@ public enum ResourceType
 {
     None,
     Health,
-    Ammo
+    LevelPoint
 }
 
 [CreateAssetMenu(menuName = "SO/Resources")]
