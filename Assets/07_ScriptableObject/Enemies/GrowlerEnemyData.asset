@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Growler
   prefab: {fileID: 9110446468666524218, guid: 8013a265ff089b743a6efa967503a1ae, type: 3}
-  maxHealth: 10
+  maxHealth: 3
   knockbackRegist: 1
   damage: 1
   attackDelay: 1

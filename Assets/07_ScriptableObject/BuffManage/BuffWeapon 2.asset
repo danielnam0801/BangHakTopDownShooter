@@ -9,9 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a43ccaa03d649f744a5f59ac931b18f2, type: 3}
-  m_Name: PlayerMovement
+  m_Script: {fileID: 11500000, guid: 03091d1e6fd81d24292abeac9b0aae86, type: 3}
+  m_Name: BuffWeapon 2
   m_EditorClassIdentifier: 
-  maxSpeed: 4
-  accerlation: 50
-  deAccerlation: 50
+  buff: {fileID: 5005177593065530828, guid: 7a5575f2b10305045a3046925fa8adb3, type: 3}
+  dataType: 1
+  detail: 2

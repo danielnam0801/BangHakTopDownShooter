@@ -6,8 +6,7 @@ using UnityEngine.Events;
 
 public class AgentMovement : MonoBehaviour
 {
-    [SerializeField]
-    private MovementDataSO _movementSO;
+    public MovementDataSO _movementSO;
 
     private Rigidbody2D _rigidbody;
 

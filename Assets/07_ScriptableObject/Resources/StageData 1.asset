@@ -13,10 +13,10 @@ MonoBehaviour:
   m_Name: StageData 1
   m_EditorClassIdentifier: 
   stageData:
-  - spawnSpawnerCnt: 3
-    spawnEnemyCnt: 3
+  - spawnSpawnerCnt: 2
+    spawnEnemyCnt: 2
     spawnEnemyPrefab:
-    - {fileID: 11400000, guid: 2e7b6adc9bc534444bccffa82f969e0b, type: 2}
+    - {fileID: 11400000, guid: 90abd73800c489f48b210d03e0d54121, type: 2}
   - spawnSpawnerCnt: 3
     spawnEnemyCnt: 3
     spawnEnemyPrefab:
