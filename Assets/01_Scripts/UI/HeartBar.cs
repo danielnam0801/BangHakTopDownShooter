@@ -11,7 +11,7 @@ public class HeartBar : MonoBehaviour
         transform.GetComponentsInChildren<HeartImage>(_imageList);   
     }
 
-    public void SetHeartBar(int hp)
+    public void SetHeartBar(float hp)
     {
         for(int i=0; i < _imageList.Count; i++)
         {

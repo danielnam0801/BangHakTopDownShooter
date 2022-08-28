@@ -13,9 +13,9 @@ public class Player : MonoBehaviour, IHitAble, IAgent
     }
     #region
     [SerializeField]
-    private int _maxHealth;
-    private int _health;
-    public int Health
+    private float _maxHealth;
+    private float _health;
+    public float Health
     {
         get => _health;
         set
@@ -28,7 +28,7 @@ public class Player : MonoBehaviour, IHitAble, IAgent
     private bool _isDead = false;
     [field: SerializeField] public UnityEvent OnDie {  get; set; }
     [field: SerializeField] public UnityEvent OnGetHit { get; set; }
-    [field: SerializeField] public UnityEvent<int> OnUpdateHealthUI { get; set; }
+    [field: SerializeField] public UnityEvent<float> OnUpdateHealthUI { get; set; }
 
     private AgentMovement _agentMovement;
 
@@ -38,7 +38,7 @@ public class Player : MonoBehaviour, IHitAble, IAgent
         _health = _maxHealth;
 
     }
-    public void GetHit(int damage, GameObject damageDealer)
+    public void GetHit(float damage, GameObject damageDealer)
     {
         if (_isDead) return;
         Health -= damage;

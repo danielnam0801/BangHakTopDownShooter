@@ -20,19 +20,23 @@ public class GameManager : MonoBehaviour
     EnemyManager _enemyManager;
     public bool _stageChange;
 
+    
+    WeaponDataSO _weaponData;
+
     [SerializeField]
     private float _criticalRate = 0.7f, _criticalMinDmg = 1.5f, _ciriticalMaxDmg = 2.5f;
 
-    public bool IsCritical => Random.value > _criticalRate;
-    public int GetCriticalDamage(int dmg)
+    public bool IsCritical => Random.value < _weaponData.criticalRate;
+    public float GetCriticalDamage(float dmg)
     {
-        float ratio = Random.Range(_criticalMinDmg, _ciriticalMaxDmg);
-        dmg = Mathf.CeilToInt((float)dmg * ratio);
+        float ratio = _weaponData.criticalDmg;
+        dmg = dmg * ratio;
         return dmg;
     }
 
     private void Awake()
     {
+        _weaponData = GameObject.Find("G.U.N").GetComponent<Weapon>().WeaponData;    
         _currentStage = 0;
         if (instance != null)
         {

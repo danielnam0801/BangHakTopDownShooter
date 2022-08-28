@@ -13,13 +13,15 @@ MonoBehaviour:
   m_Name: WeaponData
   m_EditorClassIdentifier: 
   bulletdata: {fileID: 11400000, guid: 4c553c4f7fe7f394891bfb0c3db8f0d9, type: 2}
-  ammoCapacity: 10
+  ammoCapacity: 6
   automaticFire: 0
-  weaponDelay: 0.5
+  weaponDelay: 0.7
   spreadAngle: 5
   _multiBulletShot: 0
   _bulletCount: 1
   reloadTime: 2
+  criticalRate: 0.3
+  criticalDmg: 1.3
   shootClip: {fileID: 8300000, guid: 43c69d63dcd32974f9fa79dd1950d4f0, type: 3}
   outOfAmmoClip: {fileID: 8300000, guid: af873b1b46078f94db65db75b28aba3e, type: 3}
   reloadClip: {fileID: 8300000, guid: 4626c90d062a1be44aff21e40b5a305e, type: 3}

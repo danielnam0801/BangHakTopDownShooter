@@ -18,6 +18,9 @@ public class WeaponDataSO : ScriptableObject
 
     [Range(0.1f, 2f)] public float reloadTime = 1f;
 
+    public float criticalRate = 0.3f;
+    public float criticalDmg = 1.3f;
+
     public AudioClip shootClip;
     public AudioClip outOfAmmoClip;
     public AudioClip reloadClip;

@@ -5,6 +5,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
+public enum EnemyType
+{
+    small,
+    medium,
+    big
+}
 public class Enemy : PoolAbleMono, IHitAble, IAgent
 {
     [SerializeField]
@@ -15,7 +21,7 @@ public class Enemy : PoolAbleMono, IHitAble, IAgent
 
     public Vector3 HitPoint { get; private set; }
     [field: SerializeField]
-    public int Health { get; private set; }
+    public float Health { get; private set; }
 
     [field: SerializeField]
     public UnityEvent OnDie { get; set; }
@@ -33,6 +39,9 @@ public class Enemy : PoolAbleMono, IHitAble, IAgent
     protected SpriteRenderer _spriteRenderer = null;
     protected AgentMovement _agentMovement = null;
     EnemyManager _EnemyManager;
+    levelManager _level;
+
+    public EnemyType enemyType;
 
     protected virtual void Awake()
     {
@@ -42,6 +51,7 @@ public class Enemy : PoolAbleMono, IHitAble, IAgent
         _agentMovement = GetComponent<AgentMovement>();
         _EnemyManager = GameObject.Find("Manager").GetComponent<EnemyManager>();
         _spriteRenderer = transform.Find("VisualSprite").GetComponent<SpriteRenderer>();
+        _level = GameObject.Find("Manager").GetComponent<levelManager>();
         SetEnemyData();
         Init();
     }
@@ -108,7 +118,7 @@ public class Enemy : PoolAbleMono, IHitAble, IAgent
         }
     }
 
-    public void GetHit(int damage, GameObject damageDealer)
+    public void GetHit(float damage, GameObject damageDealer)
     {
         if (_isDead == true) return;
         
@@ -132,7 +142,18 @@ public class Enemy : PoolAbleMono, IHitAble, IAgent
 
     private void DeadProcess()
     {
-        
+        switch (this.enemyType)
+        {
+            case EnemyType.small:
+                _level.totalExp += 1;
+                break;
+            case EnemyType.medium:
+                _level.totalExp += 2;
+                break;
+            case EnemyType.big:
+                _level.totalExp += 4;
+                break;
+        }
         Health = 0;
         _isDead = true;
         OnDie?.Invoke();
@@ -142,5 +163,6 @@ public class Enemy : PoolAbleMono, IHitAble, IAgent
     {
         PoolManager.Instance.Push(this);
         _EnemyManager.enemyAliveCnt--;
+
     }
 }

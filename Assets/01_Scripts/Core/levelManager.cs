@@ -7,11 +7,15 @@ using UnityEngine.EventSystems;
 
 public class levelManager : AudioPlayer
 {
-    public float totalExp = 0;
+    public float totalExp = 0;  
+    public int levelsExpGauge = 0;
+    public float sum = 0;
+
     public List<int> levels;
     public int currentLevel;
     public bool isLevelUp;
     private GameObject clickButton;
+    private bool isClickAuto;
 
 
     public UnityEvent levelUp;
@@ -32,6 +36,10 @@ public class levelManager : AudioPlayer
     private int cnt;
     private List<int> _enabledList;
 
+    [SerializeField]
+    ExpBar expbar;
+
+
     protected override void Awake()
     {
         base.Awake();
@@ -49,31 +57,67 @@ public class levelManager : AudioPlayer
         weapon = GameObject.Find("G.U.N").GetComponent<Weapon>().WeaponData;
         agent = GameObject.Find("Player").GetComponent<AgentMovement>()._movementSO;
         bullet = GameObject.Find("G.U.N").GetComponent<Weapon>().WeaponData.bulletdata;
-    } 
+        weapon.ammoCapacity = 6;
+        weapon.automaticFire = false;
+        weapon.weaponDelay = 0.7f;
+        weapon.reloadTime = 2f;
+        weapon.criticalDmg = 1.5f;
+        weapon.criticalRate = 0.3f;
+        bullet.damage = 1;
+        bullet.bulletSpeed = 7;
+        agent.maxSpeed = 3.3f;
+        isClickAuto = false;
+        expbar = GameObject.Find("ExpBar").GetComponent<ExpBar>();
+        levelsExpGauge = levels[0];
+    }
 
     private void Update()
+    {  
+
+    }
+    private void FixedUpdate()
     {
+
         if(totalExp >= levels[currentLevel])
-        {
+        {   
+          
             currentLevel++;
             isLevelUp=true;
             
-            if(isLevelUp == true)
+          
+            if (isLevelUp == true)
             {
                 LevelUpSetting();
                 LevelUpUi();
                 isLevelUp = false;
             }
-            Debug.Log( "currentLevel : "+ currentLevel);
+            Debug.Log( "currentLevel : "+ currentLevel);       
+
+
+        }
+        
+        if(currentLevel == 0) {
+            Debug.Log(expbar);
+            expbar.SetExpBar(totalExp / levelsExpGauge);
         }
 
+        if(currentLevel >= 1)
+        {
+            levelsExpGauge = levels[currentLevel] - levels[currentLevel-1];      
+            sum = totalExp - levels[currentLevel-1];
+            expbar.SetExpBar(sum / levelsExpGauge);
+        }
+
+
+
+
+        
     }
 
     private void LevelUp()
     {
         levelUp.Invoke();// levelUPSetting과 LevelUPUI넣어ㅜ저야함
     }
-
 
     public void LevelUpSetting()
     { 
@@ -95,8 +139,15 @@ public class levelManager : AudioPlayer
         panel.gameObject.SetActive(true);
         for(int i = 1; i > -2; --i)
         {
-            
-            int index = Random.Range(0, panelChildCount);
+            int index;
+            if(isClickAuto == true)
+            {
+                index = Random.Range(0, panelChildCount-1);
+            }
+            else
+            {
+                index = Random.Range(0, panelChildCount);
+            }
             Debug.Log(index);
             panel.gameObject.transform.GetChild(index).gameObject.SetActive(true);
             panel.gameObject.transform.GetChild(index).gameObject.transform.localPosition = new Vector3(-500 * i, 0, 0);
@@ -108,9 +159,14 @@ public class levelManager : AudioPlayer
 
     public void IfButtonClick()
     {
+        
         isLevelUp = false;
         clickButton = EventSystem.current.currentSelectedGameObject;
         GetTypeScript();
+        if(clickButton.name == "AttackMode")
+        {
+            isClickAuto = true;
+        }
         /// 들어올때마다 설정해줘야함
         for(int i =0; i< _enabledList.Count; i++)
         {
@@ -138,8 +194,10 @@ public class levelManager : AudioPlayer
                     switch (BuffObjects[i].detail)
                     {
                         case DataTypeDetail.capacity:
+                            weapon.ammoCapacity += 10;
                             break;
                         case DataTypeDetail.CriticalDamage:
+                            weapon.criticalDmg *= 1.2f;
                             break;
                         case DataTypeDetail.AttackMode:
                             weapon.automaticFire = true;
@@ -148,8 +206,10 @@ public class levelManager : AudioPlayer
                             weapon.weaponDelay -= 0.1f;
                             break;
                         case DataTypeDetail.CriticalRate:
+                            weapon.criticalRate *= 1.07f;
                             break;
                         case DataTypeDetail.CriticalRate2:
+                            weapon.criticalRate *= 1.15f;
                             break;
                             
                     }
@@ -158,7 +218,7 @@ public class levelManager : AudioPlayer
                 }
                 else if(BuffObjects[i].dataType == DataType.Agent)
                 {
-                    agent.maxSpeed *= 0.3f;//agent 관련 변경사항이 많아 질시 switch문으로 변경
+                    agent.maxSpeed *= 1.3f;//agent 관련 변경사항이 많아 질시 switch문으로 변경
                     Debug.Log("Agent");
                     break;
                 }
@@ -167,8 +227,10 @@ public class levelManager : AudioPlayer
                     switch (BuffObjects[i].detail)
                     {
                         case DataTypeDetail.Damage:
+                            bullet.damage += 1;
                             break;
                         case DataTypeDetail.BulletSpeed:
+                            bullet.bulletSpeed *= 1.2f;
                             break;
                     }
                     Debug.Log("Bullet");

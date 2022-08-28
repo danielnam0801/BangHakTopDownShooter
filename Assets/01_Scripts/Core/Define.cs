@@ -5,6 +5,10 @@ using UnityEngine;
 
 public class Define : MonoBehaviour
 {
+    void Awake()
+    {
+
+    }
     private static Camera _mainCam = null;
     public static Camera MainCam
     {

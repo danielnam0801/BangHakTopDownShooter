@@ -29,15 +29,5 @@ public class WeaponAudio : AudioPlayer
     {
         PlayClip(_reloadClip);
     }
-        
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+       
 }

@@ -32,7 +32,7 @@ public class ItemCollector : MonoBehaviour
                         resource.PickUpResource();
                         break;
                     case ResourceType.Health:
-                        int value = resource.ResourceData.GetAmount();
+                        float value = resource.ResourceData.GetAmount();
                         _player.Health += value;
                         //??????? ????????
                         PopupText(value, resource);
@@ -44,7 +44,7 @@ public class ItemCollector : MonoBehaviour
         }
     }
 
-    private void PopupText(int value, Resource res)
+    private void PopupText(float value, Resource res)
     {
         PopUpText text = PoolManager.Instance.Pop("PopupText") as PopUpText;
         text?.SetUp(value, res.transform.position + new Vector3(0, 0.5f, 0), false, res.ResourceData.popupTextColor);

@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 721853103258360193, guid: 17e7a6c8046afae47a24c97a9584c44d, type: 3}
   damage: 1
-  bulletSpeed: 10
+  bulletSpeed: 7
   impactObstaclePrefab: {fileID: 60152808413209817, guid: 9be168662d7e6be41b2b828368047d77, type: 3}
   impactEnemyPrefab: {fileID: 308060245890751407, guid: a334182b623092946b9b7c4efa2c4c91, type: 3}
   lifeTime: 2

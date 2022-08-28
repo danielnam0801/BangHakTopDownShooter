@@ -14,7 +14,7 @@ public class PopUpText : PoolAbleMono
         _textMesh = GetComponent<TextMeshPro>();
     }
 
-    public void SetUp(int damageAmount, Vector3 pos, bool isCritical, Color color)
+    public void SetUp(float damageAmount, Vector3 pos, bool isCritical, Color color)
     {
         transform.position = pos;
         _textMesh.SetText(damageAmount.ToString());
@@ -36,7 +36,7 @@ public class PopUpText : PoolAbleMono
         Sequence seq = DOTween.Sequence();
         Vector3 targetPosition = transform.position + new Vector3(0.5f,0,0);
         seq.Append(transform.DOJump(targetPosition, 1.5f, 1, 1f));
-        seq.Join(_textMesh.DOFade(0, 1f));
+        seq.Join(_textMesh.DOFade(0, 1f));//이상하면 여기 부분
         seq.AppendCallback(() => PoolManager.Instance.Push(this));
     }
 
