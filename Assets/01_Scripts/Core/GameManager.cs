@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -85,6 +86,17 @@ public class GameManager : MonoBehaviour
             SpawnTime(_stageData._list[0].stageData[_currentStage].spawnSpawnerCnt, _stageData._list[0].stageData[_currentStage].spawnEnemyCnt);
             _stageChange = false;
         }
+        if(_currentStage == 11 && _enemyManager._isAllEnemyDie == true)
+        {
+            _stageChange = false;
+            StartCoroutine(LoadScene());
+            
+        }
+    }
+    IEnumerator LoadScene()
+    {
+        yield return new WaitForSeconds(3f);
+        SceneManager.LoadScene("Clear");
     }
     public void SpawnTime(int _SpawnCnt, int _EnemyCount)
     {

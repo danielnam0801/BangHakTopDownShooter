@@ -21,49 +21,70 @@ MonoBehaviour:
     spawnEnemyCnt: 3
     spawnEnemyPrefab:
     - {fileID: 11400000, guid: 90abd73800c489f48b210d03e0d54121, type: 2}
-  - spawnSpawnerCnt: 3
-    spawnEnemyCnt: 3
-    spawnEnemyPrefab:
     - {fileID: 11400000, guid: 90abd73800c489f48b210d03e0d54121, type: 2}
-  - spawnSpawnerCnt: 3
-    spawnEnemyCnt: 3
-    spawnEnemyPrefab:
-    - {fileID: 11400000, guid: 90abd73800c489f48b210d03e0d54121, type: 2}
-    - {fileID: 11400000, guid: d5aa2341e3bec2d47969a0e1ed3f937d, type: 2}
     - {fileID: 11400000, guid: 3c4cec7931cf43a4fbe220ff328b4e1e, type: 2}
   - spawnSpawnerCnt: 3
     spawnEnemyCnt: 3
     spawnEnemyPrefab:
     - {fileID: 11400000, guid: 90abd73800c489f48b210d03e0d54121, type: 2}
-    - {fileID: 11400000, guid: d5aa2341e3bec2d47969a0e1ed3f937d, type: 2}
     - {fileID: 11400000, guid: 3c4cec7931cf43a4fbe220ff328b4e1e, type: 2}
+    - {fileID: 11400000, guid: 3c4cec7931cf43a4fbe220ff328b4e1e, type: 2}
+    - {fileID: 11400000, guid: d5aa2341e3bec2d47969a0e1ed3f937d, type: 2}
   - spawnSpawnerCnt: 3
     spawnEnemyCnt: 3
     spawnEnemyPrefab:
-    - {fileID: 11400000, guid: 90abd73800c489f48b210d03e0d54121, type: 2}
+    - {fileID: 11400000, guid: 2e7b6adc9bc534444bccffa82f969e0b, type: 2}
     - {fileID: 11400000, guid: d5aa2341e3bec2d47969a0e1ed3f937d, type: 2}
     - {fileID: 11400000, guid: 3c4cec7931cf43a4fbe220ff328b4e1e, type: 2}
+  - spawnSpawnerCnt: 2
+    spawnEnemyCnt: 4
+    spawnEnemyPrefab:
+    - {fileID: 11400000, guid: 42f5b8dfc6af9714aaf837c166d4dd0f, type: 2}
+    - {fileID: 11400000, guid: 79658f39e4219bd448a71e29eb777d30, type: 2}
+    - {fileID: 11400000, guid: 42f5b8dfc6af9714aaf837c166d4dd0f, type: 2}
+    - {fileID: 11400000, guid: 42f5b8dfc6af9714aaf837c166d4dd0f, type: 2}
+    - {fileID: 11400000, guid: 79658f39e4219bd448a71e29eb777d30, type: 2}
+  - spawnSpawnerCnt: 2
+    spawnEnemyCnt: 5
+    spawnEnemyPrefab:
+    - {fileID: 11400000, guid: 7c3864a45cabc1c4b956f85ac1751606, type: 2}
+    - {fileID: 11400000, guid: 79658f39e4219bd448a71e29eb777d30, type: 2}
+    - {fileID: 11400000, guid: 7c3864a45cabc1c4b956f85ac1751606, type: 2}
+    - {fileID: 11400000, guid: 42f5b8dfc6af9714aaf837c166d4dd0f, type: 2}
+  - spawnSpawnerCnt: 4
+    spawnEnemyCnt: 4
+    spawnEnemyPrefab:
+    - {fileID: 11400000, guid: c907a96a78f02934ba4b6e54abdf7892, type: 2}
+    - {fileID: 11400000, guid: 0ab9b13bdaa5da349a8e8bc1b1487a3b, type: 2}
+    - {fileID: 11400000, guid: 90abd73800c489f48b210d03e0d54121, type: 2}
+    - {fileID: 11400000, guid: 90abd73800c489f48b210d03e0d54121, type: 2}
+    - {fileID: 11400000, guid: c907a96a78f02934ba4b6e54abdf7892, type: 2}
+  - spawnSpawnerCnt: 3
+    spawnEnemyCnt: 5
+    spawnEnemyPrefab:
+    - {fileID: 11400000, guid: 2e7b6adc9bc534444bccffa82f969e0b, type: 2}
+    - {fileID: 11400000, guid: 2e7b6adc9bc534444bccffa82f969e0b, type: 2}
+    - {fileID: 11400000, guid: 2e7b6adc9bc534444bccffa82f969e0b, type: 2}
+  - spawnSpawnerCnt: 4
+    spawnEnemyCnt: 3
+    spawnEnemyPrefab:
+    - {fileID: 11400000, guid: d5aa2341e3bec2d47969a0e1ed3f937d, type: 2}
+    - {fileID: 11400000, guid: ea11718c6ac39fe48a7e24fb451afaaf, type: 2}
   - spawnSpawnerCnt: 3
     spawnEnemyCnt: 3
     spawnEnemyPrefab:
-    - {fileID: 11400000, guid: 90abd73800c489f48b210d03e0d54121, type: 2}
-    - {fileID: 11400000, guid: d5aa2341e3bec2d47969a0e1ed3f937d, type: 2}
-    - {fileID: 11400000, guid: 3c4cec7931cf43a4fbe220ff328b4e1e, type: 2}
-  - spawnSpawnerCnt: 3
-    spawnEnemyCnt: 3
+    - {fileID: 11400000, guid: 0ab9b13bdaa5da349a8e8bc1b1487a3b, type: 2}
+    - {fileID: 11400000, guid: ea11718c6ac39fe48a7e24fb451afaaf, type: 2}
+  - spawnSpawnerCnt: 5
+    spawnEnemyCnt: 5
     spawnEnemyPrefab:
+    - {fileID: 11400000, guid: ea11718c6ac39fe48a7e24fb451afaaf, type: 2}
+    - {fileID: 11400000, guid: 2e7b6adc9bc534444bccffa82f969e0b, type: 2}
+    - {fileID: 11400000, guid: 0ab9b13bdaa5da349a8e8bc1b1487a3b, type: 2}
+    - {fileID: 11400000, guid: 79658f39e4219bd448a71e29eb777d30, type: 2}
     - {fileID: 11400000, guid: 90abd73800c489f48b210d03e0d54121, type: 2}
+    - {fileID: 11400000, guid: 42f5b8dfc6af9714aaf837c166d4dd0f, type: 2}
+    - {fileID: 11400000, guid: c907a96a78f02934ba4b6e54abdf7892, type: 2}
     - {fileID: 11400000, guid: d5aa2341e3bec2d47969a0e1ed3f937d, type: 2}
-    - {fileID: 11400000, guid: 3c4cec7931cf43a4fbe220ff328b4e1e, type: 2}
-  - spawnSpawnerCnt: 3
-    spawnEnemyCnt: 3
-    spawnEnemyPrefab:
-    - {fileID: 11400000, guid: 90abd73800c489f48b210d03e0d54121, type: 2}
-    - {fileID: 11400000, guid: d5aa2341e3bec2d47969a0e1ed3f937d, type: 2}
-    - {fileID: 11400000, guid: 3c4cec7931cf43a4fbe220ff328b4e1e, type: 2}
-  - spawnSpawnerCnt: 3
-    spawnEnemyCnt: 3
-    spawnEnemyPrefab:
-    - {fileID: 11400000, guid: 90abd73800c489f48b210d03e0d54121, type: 2}
-    - {fileID: 11400000, guid: d5aa2341e3bec2d47969a0e1ed3f937d, type: 2}
+    - {fileID: 11400000, guid: 7c3864a45cabc1c4b956f85ac1751606, type: 2}
     - {fileID: 11400000, guid: 3c4cec7931cf43a4fbe220ff328b4e1e, type: 2}

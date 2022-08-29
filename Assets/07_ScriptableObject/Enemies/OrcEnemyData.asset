@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Orc
   prefab: {fileID: 780056955210023265, guid: faec232f19f51c149b8558aa170dbf3e, type: 3}
-  maxHealth: 15
+  maxHealth: 10
   knockbackRegist: 1
-  damage: 2
-  attackDelay: 3
-  attackRange: 1
-  chaseRange: 5
+  damage: 1
+  attackDelay: 2
+  attackRange: 0.6
+  chaseRange: 8

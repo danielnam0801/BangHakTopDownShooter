@@ -14,9 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Skeleton
   prefab: {fileID: 3132474957976623245, guid: 801587d79f6cf2d4790ef19164bbf745, type: 3}
-  maxHealth: 3
+  maxHealth: 4
   knockbackRegist: 1
   damage: 1
   attackDelay: 1
-  attackRange: 0.8
-  chaseRange: 5
+  attackRange: 0.6
+  chaseRange: 10

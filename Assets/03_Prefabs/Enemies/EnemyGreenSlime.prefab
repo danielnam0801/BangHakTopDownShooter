@@ -1079,6 +1079,7 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   _isActive: 0
+  enemyType: 1
 --- !u!1 &1245515273680645469
 GameObject:
   m_ObjectHideFlags: 0

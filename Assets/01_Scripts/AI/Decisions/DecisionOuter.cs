@@ -31,6 +31,6 @@ public class DecisionOuter : AIDecision
             Gizmos.color = Color.white;
         }
     }
-}
 #endif
+}
 

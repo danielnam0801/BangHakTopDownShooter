@@ -1461,3 +1461,4 @@ MonoBehaviour:
           m_BoolArgument: 0
         m_CallState: 2
   _isActive: 0
+  enemyType: 1

@@ -98,10 +98,10 @@ public class Spawner : PoolAbleMono
             Gizmos.color = Color.white;
         }
     }
+#endif
 
     public override void Init()
     {
         // do NOTING
     }
-#endif
 }
