@@ -8,15 +8,18 @@ using UnityEngine.SceneManagement;
 public class UIManager : MonoBehaviour
 {
     [SerializeField] RectTransform StatusPanel;
-    [SerializeField] Image Panel;
+    [SerializeField] SpriteRenderer Panel;
 
     [SerializeField] float ftime = 1f;
     float time = 0f;
+    bool isDead = false;
 
 
     private void Awake()
     {
         StatusPanel.gameObject.SetActive(false);
+        Panel.gameObject.SetActive(false);
+        Panel = Panel.gameObject.GetComponent<SpriteRenderer>();
     }
     private void Update()
     {
@@ -24,7 +27,7 @@ public class UIManager : MonoBehaviour
 
         //string message = mousePos.ToString();
         //Debug.Log(message);
-        if (mousePos.x <= 107 && mousePos.x >= 25 && mousePos.y >= 19 && mousePos.y <= 55)
+        if (mousePos.x <= 209 && mousePos.x >= 50 && mousePos.y >= 19 && mousePos.y <= 104)
         {
             StatusPanel.gameObject.SetActive(true);
             //ATK.text = "ATK : " + attackRange.damage;
@@ -33,6 +36,11 @@ public class UIManager : MonoBehaviour
         else
         {
             StatusPanel.gameObject.SetActive(false);
+        }
+
+        if(isDead == true)
+        {
+            SceneManager.LoadScene("Die");
         }
     }
 
@@ -43,21 +51,25 @@ public class UIManager : MonoBehaviour
     public void FadeIn()
     {
         StartCoroutine(FadeIN());
-        SceneManager.LoadScene("Die");
     }
 
     IEnumerator FadeIN()
     {
+        yield return new WaitForSeconds(0.7f);
         Panel.gameObject.SetActive(true);
         Color alpha = Panel.color;
-        while (alpha.a <= 1f)
+        while (alpha.a < 1f)
         {
             time += Time.deltaTime / ftime;
             alpha.a = Mathf.Lerp(0, 1, time);
             Panel.color = alpha;
+            //Debug.Log("aaaa");
             yield return null;
         }
+        yield return new WaitForSeconds(0.3f);
+        SceneManager.LoadScene("Die");
         yield return null;
+        
     }
     IEnumerator FadeOUT()
     {

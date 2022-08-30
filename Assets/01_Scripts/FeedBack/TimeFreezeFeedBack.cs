@@ -17,10 +17,16 @@ public class TimeFreezeFeedBack : FeedBack
 
     public override void CreateFeedback()
     {
-        TimeController.instance?.ModifyTimeScale(_timeFreezeValue, _beforeFreezeDelay, () =>
+        if(TimeController.instance.isActiveTime == false)
         {
-            TimeController.instance?.ModifyTimeScale(1, _unFreezeTimeDelay);
-        });
+            TimeController.instance.isActiveTime = true;
+            TimeController.instance?.ModifyTimeScale(_timeFreezeValue, _beforeFreezeDelay, () =>
+            {
+                TimeController.instance?.ModifyTimeScale(1, _unFreezeTimeDelay);
+                TimeController.instance.isActiveTime = false;
+            });
+        }
+       
     }
 }
 

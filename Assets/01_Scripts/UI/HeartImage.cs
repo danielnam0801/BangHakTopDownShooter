@@ -19,7 +19,7 @@ public class HeartImage : MonoBehaviour
         if (value == true)
         {
             _image.sprite = _heartImageSO.fullHeart;
-            Debug.Log(_heartImageSO.fullHeart);
+            //Debug.Log(_heartImageSO.fullHeart);
         }
         else
         {

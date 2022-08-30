@@ -5,6 +5,8 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using System;
+using DG.Tweening;
 
 public class levelManager : AudioPlayer
 {
@@ -15,10 +17,10 @@ public class levelManager : AudioPlayer
     public List<int> levels;
     public int currentLevel;
     public bool isLevelUp;
-    private GameObject clickButton;
+    private string clickButton;
     private bool isClickAuto;
 
-
+    public Action levelUP;
     public UnityEvent levelUp;
     public List<GetDataSo> BuffObjects;
     public int buffcnt;
@@ -31,7 +33,8 @@ public class levelManager : AudioPlayer
     private AudioClip _cllickSound = null, _levelUpSound = null;
     [SerializeField]
     RectTransform panel;
-
+    [SerializeField]
+    RectTransform coverPanel;
     private int panelChildCount;
     private int index;
     private int cnt;
@@ -44,6 +47,8 @@ public class levelManager : AudioPlayer
     bool endChoice = false;
     [SerializeField]
     TextMeshProUGUI movespeed, criticalRate, criticalDmg, Dmg, bulletSpeed, AttackDelay, ReloadTime, AutomaicShot,AmmoCapacity;
+    [SerializeField]
+    Ease ease;
 
     protected override void Awake()
     {
@@ -55,7 +60,9 @@ public class levelManager : AudioPlayer
         //levels = new List<int>() {5, 25, 45, 65, 90, 120, 155, 195, 250};
         currentLevel = 0;
         panel = panel.gameObject.GetComponent<RectTransform>();
+        coverPanel = coverPanel.gameObject.GetComponent<RectTransform>();
         panel.gameObject.SetActive(false);
+        coverPanel.gameObject.SetActive(false);
         panelChildCount = panel.transform.childCount;
         _enabledList = new List<int>() { 0, 0, 0 };
         buffcnt = BuffObjects.Count;
@@ -130,7 +137,10 @@ public class levelManager : AudioPlayer
 
     private void LevelUp()
     {
+        //levelUP += LevelUpUi;
+        //levelUP += LevelUpSetting;
         levelUp.Invoke();// levelUPSetting과 LevelUPUI넣어ㅜ저야함
+        
     }
 
     public void LevelUpSetting()
@@ -138,21 +148,27 @@ public class levelManager : AudioPlayer
 
         PlayClip(_levelUpSound);
         //StartCoroutine(FreeTime());
-        if(endChoice == true)
-        {
-            TimeController.instance.ModifyTimeScale(0f, 0.02f, () => TimeController.instance?.ModifyTimeScale(0, 0));
-            Debug.Log(".");
-            endChoice = false;
-        }
+        //if(endChoice == true)
+        //{
+        //    if (TimeController.instance.isActiveTime == false)
+        //    {
+        //        Debug.Log("LEVELUP TIME");
+        //        TimeController.instance.ModifyTimeScale(0f, 0.02f);
+        //        endChoice = false;
+        //    }
+        //    Debug.Log(".");
+            
+        //}
         
     }
-    IEnumerator FreeTime()
-    {
-        yield return new WaitForSeconds(0.02f);
-    }
+    //IEnumerator FreeTime()
+    //{
+    //    yield return new WaitForSeconds(0.02f);
+    //}
 
     public void LevelUpUi()
     {
+        //Debug.Log(1);
         StopCoroutine(LevelUPUI());
         StartCoroutine(LevelUPUI());
        
@@ -160,51 +176,87 @@ public class levelManager : AudioPlayer
 
     IEnumerator LevelUPUI()
     {
+        coverPanel.gameObject.SetActive(true);
         yield return null;
         Debug.Log("ALive");
+        //Debug.Log(isClickAuto + "!!LEVELUP!!");
         cnt = 0;
         panel.gameObject.SetActive(true);
-        for(int i = 1; i > -2; --i)
+
+        for(int i = 0; i < 3; i++)
         {
-            int index;
+            int indexy;
             if(isClickAuto == true)
             {
-                index = Random.Range(0, panelChildCount-1);
+                indexy = UnityEngine.Random.Range(0, panelChildCount-1);
             }
             else
             {
-                index = Random.Range(0, panelChildCount);
+                indexy = UnityEngine.Random.Range(0, panelChildCount);
+                //Debug.Log(indexy);
             }
-            Debug.Log(index);
-            panel.gameObject.transform.GetChild(index).gameObject.SetActive(true);
-            panel.gameObject.transform.GetChild(index).gameObject.transform.localPosition = new Vector3(-500 * i, 0, 0);
-            _enabledList[cnt] = index;
+               
+            _enabledList[cnt] = indexy;
+
             cnt++;
+            if (i >= 1 && i < 3)
+            {
+                if (_enabledList[i] == _enabledList[i - 1])
+                {
+                    while (_enabledList[i] == _enabledList[i - 1])
+                    {
+                        indexy = UnityEngine.Random.Range(0, panelChildCount - 1);
+                        if (indexy != _enabledList[i - 1])
+                        {
+                            _enabledList[i] = indexy;
+                            break;
+                        }
+                    }
+
+                }
+            }
+            //Debug.Log(_enabledList[i]);
+
             
+        }            
+        
+            Debug.Log(_enabledList[0]);
+            Debug.Log(_enabledList[1]);
+            Debug.Log(_enabledList[2]);
+
+        for(int i = 0; i< 3; i++)
+        {
+            panel.gameObject.transform.GetChild(_enabledList[i]).gameObject.SetActive(true);
+            panel.gameObject.transform.GetChild(_enabledList[i]).gameObject.transform.DOMove(new Vector3(400 + 580*i, 500, 0), 1f, true).SetEase(ease);//.localPosition = new Vector3(-500 * i, 0, 0);
+            yield return new WaitForSeconds(0.8f);
+
         }
         endChoice = true;
+        coverPanel.gameObject.SetActive(false);
     }
 
     public void IfButtonClick()
     {
+        Debug.Log("!");
         
         isLevelUp = false;
-        clickButton = EventSystem.current.currentSelectedGameObject;
+        clickButton = EventSystem.current.currentSelectedGameObject.name;
         GetTypeScript();
-        if(clickButton.name == "AttackMode")
+        if(clickButton == "AttackMode")
         {
             isClickAuto = true;
         }
         /// 들어올때마다 설정해줘야함
         for(int i =0; i< _enabledList.Count; i++)
         {
+            panel.gameObject.transform.GetChild(_enabledList[i]).gameObject.transform.localPosition = new Vector3(0, 1500, 0);
             panel.transform.GetChild(_enabledList[i]).gameObject.SetActive(false);
             _enabledList[i] = 0;
         }
         panel.gameObject.SetActive(false);
         
         
-        TimeController.instance.ResetTimeScale();
+        //TimeController.instance.ResetTimeScale();
         PlayClip(_cllickSound);
     }
 
@@ -215,8 +267,9 @@ public class levelManager : AudioPlayer
         for(i = 0 ; i< buffcnt; i++ )
         {
             Debug.Log(clickButton);
-            if(clickButton.name == BuffObjects[i].buff.name)
+            if(clickButton == BuffObjects[i].buff.name)
             {
+                Debug.Log(BuffObjects[i].buff.name);
                 if(BuffObjects[i].dataType == DataType.Weapon)
                 {
                     switch (BuffObjects[i].detail)
